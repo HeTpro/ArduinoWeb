@@ -25,6 +25,9 @@ void loop(void){
                     Serial.write(temporal);
                     temporal = (unsigned int) var2 >> 16;
                     Serial.write(temporal); 
+                    temporal = (unsigned int) var2 >> 32;
+                    Serial.write(temporal); 
+                    
                break;
        case 'C':   Serial.write(var3); Serial.write((unsigned int) var3>>8);     break;
        case 'D':   Serial.write(var4);    break;
@@ -44,4 +47,4 @@ void loop(void){
 
 //pREGUNTA:
 // Cuantos bytes se requieren para transmitir la siguiente información: Serial.println("125625.232234");   R: 13 BYTES, 1 por cada aracter
-//Pero, lo mas eficiente es enviar la variable, no su conversion a caracter, ya que la variable, por ejemplo var2, ocupa 4 bytes y representa praticamente la misma informacion. Pero esa informacion no se puede interpretar directamente.
+//Pero, lo mas eficiente es enviar la variable, no su conversion a caracter, ya que la variable, por ejemplo var2, ocupa 4 bytes y representa praticamente la misma informacion. Pero esa informacion no se puede interpretar directamente. 
