@@ -1,5 +1,4 @@
 unsigned int var1 = 1231;  //2 bytes
-double var2 = 1231241.12111;  //cuantos bytes? 4 bytes - correcto!!!
 int var3 = -12321;  //2 bytes
 char var4 = 'x';  //1 byte
 char dato_recibido = 0;  //Variable que guardara el byte recibido por serial
@@ -18,23 +17,12 @@ void loop(void){
      dato_recibido = Serial.read(); 
       switch(dato_recibido){
        case 'A':  Serial.write(var1);   Serial.write((unsigned int)var1>>8);    break;
-       case 'B':  
-                    temporal = var2;
-                    Serial.write(temporal);
-                    temporal = (unsigned int) var2 >> 8;   // A esto se le conoce como "casting", investigar "casting c++" for more information
-                    Serial.write(temporal);
-                    temporal = (unsigned int) var2 >> 16;
-                    Serial.write(temporal); 
-                    temporal = (unsigned int) var2 >> 32;
-                    Serial.write(temporal); 
-                    
-               break;
        case 'C':   Serial.write(var3); Serial.write((unsigned int) var3>>8);     break;
        case 'D':   Serial.write(var4);    break;
-       case 'E':  Serial.println("Gracias por usar nuestor administrador serial"); break;
+       case 'B':  Serial.println("Gracias por usar nuestor administrador serial"); break;
        default:  Serial.println("Error 5202"); 
       }
-      if(dato_recibido == 'E') break;
+      if(dato_recibido == 'B') break;
       
     }
   }
@@ -45,6 +33,3 @@ void loop(void){
 }
 
 
-//pREGUNTA:
-// Cuantos bytes se requieren para transmitir la siguiente información: Serial.println("125625.232234");   R: 13 BYTES, 1 por cada aracter
-//Pero, lo mas eficiente es enviar la variable, no su conversion a caracter, ya que la variable, por ejemplo var2, ocupa 4 bytes y representa praticamente la misma informacion. Pero esa informacion no se puede interpretar directamente. 
