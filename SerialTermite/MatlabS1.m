@@ -3,10 +3,10 @@
 %Crear un objeto, con las caracteristicas de la comunicación.
 
 %pause(1)
-ObjetoSerial = instrfind('Type', 'serial', 'Port', 'COM26', 'Tag', '');
+ObjetoSerial = instrfind('Type', 'serial', 'Port', 'COM136', 'Tag', '');
 %pause(1)
 if isempty(ObjetoSerial)
-    ObjetoSerial = serial('COM26');
+    ObjetoSerial = serial('COM136');
 else
     fclose(ObjetoSerial);
     ObjetoSerial = ObjetoSerial(1)
@@ -25,13 +25,6 @@ pause(0.001)
 datos_leido = fread(ObjetoSerial, 1, 'uint16')
 
 pause(1)
-
-
-%%%%%%%%%%%%%%Lectura de la segunda variable%%%%%%%%%%%%%%%%
-fwrite(ObjetoSerial, 'B','char');
-pause(0.001)
-
-datos_leido2 = fread(ObjetoSerial, 1, 'float')
 
 
 %%%%%%%%%%%%%%Lectura de la tercer variable%%%%%%%%%%%%%%%%
@@ -61,5 +54,3 @@ datos_leido5 = fscanf(ObjetoSerial,'%s',4)
 flushinput(ObjetoSerial);
 fclose(ObjetoSerial);
 delete(ObjetoSerial);
-
-
